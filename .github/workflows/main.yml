@@ -37,12 +37,12 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Build and Pack NuGet package
-      run: dotnet pack -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release
+      run: dotnet pack -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release -o ./nuget_packages
     - name: Upload NuGet package to GitHub
       uses: actions/upload-artifact@v2
       with:
         name: nugetPackage
-        path: /c-em-env/c-em-env/bin/Release/ 
+        path: ./nuget_packages/*.nupkg
         
   release:
     runs-on: ubuntu-latest    
