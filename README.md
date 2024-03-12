@@ -105,29 +105,6 @@ This C# class, `Variable`, represents a dynamic variable that retrieves values f
 - Retrieve values from environment variables and configuration settings dynamically.
 - Supports dynamic property access for easy retrieval of values.
 
-#### Installation
-
-1. **Add Package Reference**:
-
-   Ensure you have the required packages installed. Add the following package references to your project:
-
-   ```bash
-   dotnet add package Microsoft.Extensions.Configuration
-   dotnet add package c-em-env
-   ```
-
-2. **Usage**:
-
-   Register the `Variable` class in your application's service collection during startup:
-
-   ```csharp
-   // Add the Variable class as a singleton service
-   builder.Services.AddSingleton<IVariable, Variable>();
-
-   // Initialize the Variable class with the application's configuration
-   new Variable(builder.Configuration);
-   ```
-
 #### Important Note
 
 - **`.env` File Required**: Ensure you have an `.env` file present in your project directory with the necessary environment variables. The `Variable` class retrieves values from environment variables and requires an `.env` file to function correctly.
