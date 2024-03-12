@@ -37,7 +37,7 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Build and Pack NuGet package
-      run: dotnet pack $(find . -name "c-em-env.csproj" -print -quit) -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release
+      run: dotnet pack $(find . -name "c-em-env.csproj" -print -quit | xargs dirname) -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release
     - name: Upload NuGet package to GitHub
       uses: actions/upload-artifact@v2
       with:
