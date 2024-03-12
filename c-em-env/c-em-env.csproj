@@ -5,7 +5,6 @@
     <RootNamespace>c_em_env</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>C-EM-ENV</Title>
     <Authors>Ethern Myth</Authors>
     <Description>The `c-em-env` package simplifies dynamic variable access in C# applications, particularly for retrieving values from environment variables and configuration settings. It offers convenient functionality to handle `.env` files commonly used for configuration management.
