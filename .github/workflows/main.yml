@@ -1,9 +1,11 @@
-name: Action to build and publish the project as a nuget package to github package registry
+name: CI
 
 on:
   push:
-    branches: [main]
-      
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
 jobs:
   build:
     runs-on: ubuntu-latest    
@@ -35,17 +37,17 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Build and Pack NuGet package
-      run: dotnet pack c-em-env/c-em-env.csproj -c Release
+      run: dotnet pack c-em-env/c-em-env/c-em-env.csproj -p:Version='${{ steps.gitversion.outputs.SemVer }}' -c Release
     - name: Upload NuGet package to GitHub
       uses: actions/upload-artifact@v2
       with:
         name: nugetPackage
-        path: bin/Release/ 
+        path: c-em-env/c-em-env/bin/Release/ 
         
   release:
     runs-on: ubuntu-latest    
     needs: build
-    if: github.ref == 'refs/heads/main' # only run job if on the master branch   
+    if: github.ref == 'refs/heads/main' # only run job if on the main branch   
     
     steps:  
     #Push NuGet package to GitHub packages
@@ -54,17 +56,17 @@ jobs:
       with:
         name: nugetPackage
     - name: Prep packages
-      run: dotnet nuget add source --username ethern-myth --password ${{ secrets.NUGET_PACKAGE_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/ethern-myth/index.json"
+      run: dotnet nuget add source --username ethern-myth --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/ethern-myth/index.json"
     - name: Push package to GitHub packages 
       if: needs.build.outputs.CommitsSinceVersionSource > 0 #Only release if there has been a commit/version change  
-      run: dotnet nuget push nugetPackage/*.nupkg --api-key ${{ secrets.NUGET_PACKAGE_TOKEN }}  --source "github"
+      run: dotnet nuget push nugetPackage/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "github"
     
     #Create release
     - name: Create Release
       if: 1 == 0 #needs.build.outputs.CommitsSinceVersionSource > 0 #Only release if there has been a commit/version change
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.NUGET_PACKAGE_TOKEN }} 
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
         tag_name: ${{ needs.build.outputs.Version }}
         release_name: Release ${{ needs.build.outputs.Version }}
@@ -75,4 +77,4 @@ jobs:
         tag: ${{ needs.build.outputs.Version }}
         name: Release ${{ needs.build.outputs.Version }}
         artifacts: "nugetPackage/*"
-        token: ${{ secrets.NUGET_PACKAGE_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
