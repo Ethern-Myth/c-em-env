@@ -96,10 +96,6 @@ string value = variable.GetDynamicValue("SomeKey");
 - It provides dynamic access to these values using C#'s dynamic feature.
 - Error handling is included for cases where keys are null, whitespace, or not found in the configuration settings.
 
-### Dynamic Variable
-
-This C# class, `Variable`, represents a dynamic variable that retrieves values from environment variables and configuration settings. It offers dynamic access to these values through the `AsDynamic()` method and dynamic property access.
-
 #### Features
 
 - Retrieve values from environment variables and configuration settings dynamically.
@@ -111,7 +107,6 @@ This C# class, `Variable`, represents a dynamic variable that retrieves values f
 
 This guide assumes you're using .NET Core or .NET 5+ for your project, although this was created on .NET 8. Make sure to replace `builder` with your appropriate service provider registration mechanism if you're using a different framework or dependency injection container.
 
-<br/>
 
 ### Author and Creator
 
