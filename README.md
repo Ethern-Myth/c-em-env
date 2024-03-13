@@ -2,6 +2,16 @@
 
 The `c-em-env` package simplifies dynamic variable access in C# applications, particularly for retrieving values from environment variables and configuration settings. It offers convenient functionality to handle `.env` files commonly used for configuration management.
 
+![NuGet Version](https://img.shields.io/nuget/v/c-em-env)
+
+![GitHub Tag](https://img.shields.io/github/v/tag/ethern-myth/c-em-env)
+
+
+<!--- ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/ethern-myth/c-em-env/total) --->
+
+<!--- ![NuGet Downloads](https://img.shields.io/nuget/dt/c-em-env) --->
+
+
 ### Explanation
 
 `Variable`, represents a dynamic variable that retrieves values from environment variables and configuration settings. It offers dynamic access to these values through the `AsDynamic()` method and dynamic property access.
