@@ -6,10 +6,7 @@ The `c-em-env` package simplifies dynamic variable access in C# applications, pa
 
 ![GitHub Tag](https://img.shields.io/github/v/tag/ethern-myth/c-em-env)
 
-
-<!--- ![GitHub Downloads (all assets, all releases)](https://img.shields.io/github/downloads/ethern-myth/c-em-env/total) --->
-
-<!--- ![NuGet Downloads](https://img.shields.io/nuget/dt/c-em-env) --->
+![NuGet Downloads](https://img.shields.io/nuget/dt/c-em-env)
 
 
 ### Explanation
