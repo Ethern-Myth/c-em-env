@@ -18,6 +18,7 @@
     <PackageTags>environment;configuration;csharp;variable;</PackageTags>
     <SignAssembly>False</SignAssembly>
     <GenerateDocumentationFile>False</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
