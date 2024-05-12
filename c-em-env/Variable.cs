@@ -16,6 +16,7 @@ namespace c_em_env
         /// <param name="config">The configuration.</param>
         public Variable(IConfiguration config)
         {
+            EnvFileReader.Read();
             EnvFileReader.Load();
             _config = config ?? throw new ArgumentNullException(nameof(config));
         }

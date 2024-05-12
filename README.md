@@ -28,6 +28,11 @@ The `c-em-env` package simplifies dynamic variable access in C# applications, pa
    Register the `Variable` class in your application's service collection during startup:
 
    ```csharp
+   // Use the EnvFileReader to load the .env file at the beginning of the Program.cs or Startup.cs
+   // NOTE: This step is helpful if .env variables are not loaded from the constructor automatically on program startup
+   EnvFileReader.Read();
+   EnvFileReader.Load();
+
    // Add the Variable class as a singleton service
    builder.Services.AddSingleton<IVariable, Variable>();
 
